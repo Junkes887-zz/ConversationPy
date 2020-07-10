@@ -5,7 +5,7 @@ import speech_recognition as sr
 from gtts import gTTS
 
 def speak(text):
-    tts = gTTS(text=text,lang='en')
+    tts = gTTS(text=text,lang='pt-br')
     filename = 'voice.mp3'
     tts.save(filename)
     playsound.playsound(filename)
@@ -17,21 +17,18 @@ def get_audio():
         said = ""
 
         try:
-            said = r.recognize_google(audio)
+            said = r.recognize_google(audio,language='pt-BR')
             print(said)
         except Exception as e:
             print("Exception: " + str(e))
     return said
 
-speak("Hello how can i help?")
+speak("Olá, como posso ajudar?")
 
 text = get_audio()
 
-if "how are you" in text:
-    speak("I'm fine, and you?")
+if "como vai você" in text:
+    speak("Estou bem, e você?")
 
-if "what is your name" in text:
-    speak("My name is Cripto")
-
-if "what is your creator" in text:
-    speak("My creator is Henrique")
+if "seu nome" in text:
+    speak("Meu nome é Jarvis")
